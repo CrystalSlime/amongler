@@ -22,8 +22,13 @@ using StringTools;
 class FreeplayState extends MusicBeatState
 {
 	//Character head icons for your songs
-	static var songsHeads:Array<Dynamic> = [												
-		['jerry', 'jerry', 'smoljerry'],	//Week 1
+	static var songsHeads:Array<Dynamic> = [
+		['dad'],							//Week 1
+		['spooky', 'spooky', 'monster'],	//Week 2
+		['pico'],							//Week 3
+		['mom'],							//Week 4
+		['parents', 'parents', 'monster'],	//Week 5
+		['senpai', 'senpai', 'spirit']		//Week 6
 	];
 
 	var songs:Array<SongMetadata> = [];
@@ -79,6 +84,13 @@ class FreeplayState extends MusicBeatState
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
 		#end
+
+		for (i in 1...WeekData.songsNames.length) {
+			#if !debug
+			if (StoryMenuState.weekUnlocked[i])
+			#end
+				addWeek(WeekData.songsNames[i], i, songsHeads[i-1]);
+		}
 
 		// LOAD MUSIC
 
