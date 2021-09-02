@@ -59,7 +59,7 @@
 	"no_antialiasing": true,
 	"image": "jerry/jerry",
 	"position": [
-		-80,
+		60,
 		230
 	],
 	"healthicon": "jerry",

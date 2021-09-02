@@ -635,6 +635,9 @@ class PlayState extends MusicBeatState
 				BF_Y += 220;
 				GF_X += 180;
 				GF_Y += 300;
+			case 'jerrysHouse':
+				BF_X += 130;
+				BF_Y -= 20;
 		}
 
 		gf = new Character(GF_X, GF_Y, gfVersion);
@@ -670,6 +673,8 @@ class PlayState extends MusicBeatState
 
 		switch(curStage)
 		{
+			case 'jerrysHouse':
+				gf.y -= 500000000;
 			case 'limo':
 				resetFastCar();
 				add(fastCar);
