@@ -648,6 +648,8 @@ class PlayState extends MusicBeatState
 			case 'jerryNight':
 				BF_X += 130;
 				BF_Y -= 20;
+				DAD_Y += 125;
+				DAD_X += 300;
 		}
 
 		gf = new Character(GF_X, GF_Y, gfVersion);
