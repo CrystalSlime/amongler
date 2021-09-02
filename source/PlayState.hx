@@ -553,7 +553,13 @@ class PlayState extends MusicBeatState
 					bg.antialiasing = false;
 					add(bg);
 				}
-
+			case 'jerrysHouse':
+				defaultCamZoom = 0.55;
+				curStage = 'jerrysHouse';
+				var bg:BGSprite = new BGSprite('jerry/jerryStage', -1500, -1000, 0.9, 0.9);
+				bg.setGraphicSize(Std.int(bg.width * 0.8));
+				bg.updateHitbox();
+				add(bg);
 			default:
 				defaultCamZoom = 0.9;
 				curStage = 'stage';

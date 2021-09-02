@@ -6,12 +6,7 @@ class WeekData {
 	//Go to StoryMenuState.hx and add the characters/backgrounds
 	public static var songsNames:Array<Dynamic> = [
 		['Tutorial'],								//Tutorial, this one isn't added to Freeplay, instead it is added from assets/preload/freeplaySonglist.txt
-		['Bopeebo', 'Fresh', 'Dad-Battle'],			//Week 1
-		['Spookeez', 'South', 'Monster'],			//Week 2
-		['Pico', 'Philly-Nice', 'Blammed'],			//Week 3
-		['Satin-Panties', 'High', 'Milf'],			//Week 4
-		['Cocoa', 'Eggnog', 'Winter-Horrorland'],	//Week 5
-		['Senpai', 'Roses', 'Thorns']				//Week 6
+		['The-Circle', 'The-Oval', 'The-Being']		//JERRY THE CIRCLE OMFG HOLY SHIT AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 	];
 
 	// Custom week number, used for your week's score not being overwritten by a new vanilla week when the game updates
@@ -19,12 +14,7 @@ class WeekData {
 	// null = Don't change week number, it follows the vanilla weeks number order
 	public static var weekNumber:Array<Dynamic> = [
 		null,	//Tutorial
-		null,	//Week 1
-		null,	//Week 2
-		null,	//Week 3
-		null,	//Week 4
-		null,	//Week 5
-		null	//Week 6
+		null	//Week 1
 	];
 
 	//Tells which assets directory should it load
