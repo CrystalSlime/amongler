@@ -288,6 +288,13 @@ class PlayState extends MusicBeatState
 				bg.setGraphicSize(Std.int(bg.width * 1));
 				bg.updateHitbox();
 				add(bg);
+			case 'the-being':
+				defaultCamZoom = 0.55;
+				curStage = 'jerryNight';
+				var bg:BGSprite = new BGSprite('jerry/jerryNight', -1500, -1075, 0.9, 0.9);
+				bg.setGraphicSize(Std.int(bg.width * 1));
+				bg.updateHitbox();
+				add(bg);
 			case 'spookeez' | 'south' | 'monster':
 				curStage = 'spooky';
 
@@ -638,6 +645,9 @@ class PlayState extends MusicBeatState
 			case 'jerrysHouse':
 				BF_X += 130;
 				BF_Y -= 20;
+			case 'jerryNight':
+				BF_X += 130;
+				BF_Y -= 20;
 		}
 
 		gf = new Character(GF_X, GF_Y, gfVersion);
@@ -674,6 +684,8 @@ class PlayState extends MusicBeatState
 		switch(curStage)
 		{
 			case 'jerrysHouse':
+				gf.y -= 500000000;
+			case 'jerryNight':
 				gf.y -= 500000000;
 			case 'limo':
 				resetFastCar();
