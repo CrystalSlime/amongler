@@ -30,6 +30,7 @@ class CreditsState extends MusicBeatState
 		[''],
 		['Special Thanks'],
 		['Keoiki',				'keoiki',			'Note Splash Animations',							'https://twitter.com/Keoiki_',			0xFFFFFFFF],
+		['PolybiusProxy',       'polybiusproxy',   '.MP4 Video Loader Extension',                       'https://twitter.com/polybiusproxy',    0xFFFFEAA6],
 		[''],
 		["Funkin' Crew"],
 		['ninjamuffin99',		'ninjamuffin99',	"Programmer of Friday Night Funkin'",				'https://twitter.com/ninja_muffin99',	0xFFF73838],

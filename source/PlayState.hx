@@ -3739,4 +3739,6 @@ class PlayState extends MusicBeatState
 
 	var curLight:Int = 0;
 	var curLightEvent:Int = 0;
+
+	videoIntro()
 }
