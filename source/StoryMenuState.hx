@@ -46,12 +46,7 @@ class StoryMenuState extends MusicBeatState
 	//Background asset name, the background files are stored on assets/preload/menubackgrounds/
 	var weekBackground:Array<String> = [
 		'stage',		
-		'stage',
-		'halloween',
-		'philly',
-		'limo',
-		'christmas',
-		'school'
+		'jerry'
 	];
 	
 	var scoreText:FlxText;

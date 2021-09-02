@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="campaign_menu_UI_assets.png">
+<TextureAtlas imagePath="Menu_jerry.png">
 	<!-- Created with Adobe Animate version 21.0.1.37179 -->
 	<!-- http://www.adobe.com/products/animate.html -->
 	<SubTexture name="jerry instance 10000" x="0" y="0" width="297" height="316"/>

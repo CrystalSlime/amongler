@@ -53,6 +53,9 @@ class MenuCharacter extends FlxSprite
 			case 'senpai':
 				frames = Paths.getSparrowAtlas('menucharacters/Menu_Senpai');
 				animation.addByPrefix('idle', "M Senpai Idle", 24);
+			case 'jerry':
+				frames = Paths.getSparrowAtlas('menucharacters/Menu_jerry');
+				animation.addByPrefix('idle', "jerry instance 10000", 24);
 		}
 		animation.play('idle');
 		updateHitbox();
