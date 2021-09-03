@@ -309,11 +309,23 @@ class StoryMenuState extends MusicBeatState
 			PlayState.storyWeek = curWeek;
 			PlayState.campaignScore = 0;
 			PlayState.campaignMisses = 0;
-			new FlxTimer().start(1, function(tmr:FlxTimer)
-			{
-				LoadingState.loadAndSwitchState(new PlayState(), true);
-				FreeplayState.destroyFreeplayVocals();
-			});
+			var isCutscene:Bool = false;
+			var video:MP4Handler = new MP4Handler(); 
+			if (curWeek == 1 && !isCutscene)
+				{
+					video.playMP4(Paths.video('cutsceneone'), new PlayState(), false, false, false);
+					isCutscene = true;
+				}
+				else
+				{
+					new FlxTimer().start(1, function(tmr:FlxTimer)
+						{
+							if (isCutscene)
+								video.onVLCComplete();
+							LoadingState.loadAndSwitchState(new PlayState(), true);
+							FreeplayState.destroyFreeplayVocals();						   
+						});
+				}
 		}
 	}
 
