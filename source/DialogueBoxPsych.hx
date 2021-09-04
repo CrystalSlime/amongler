@@ -53,6 +53,13 @@ class DialogueBoxPsych extends FlxSpriteGroup
 				char.animation.addByPrefix('unamusedIdle', 'PSY unamused', 24, true);
 				char.animation.addByPrefix('unamused', 'PSY UNAMUSED loop', 24, true);
 				char.y -= 140;
+			case 'jerry':
+				char.frames = Paths.getSparrowAtlas('dialogue/dialoguejerry'); //oppa gangnam style xddddd kill me
+				char.animation.addByPrefix('talk', 'body', 24, true);
+				char.animation.addByPrefix('talkIdle', 'bodyidle', 24, true); 
+				char.animation.addByPrefix('smug', 'another', 24, true);
+				char.y -= 200;
+				setGraphicSize(Std.int(char.width * 0.5));
 		}
 		char.animation.play('talkIdle', true);
 	}

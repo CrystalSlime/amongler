@@ -1,2 +1,7 @@
 jerry:left bf:right
-:1:talk:0.05:normal:test lmao
+:1:talk:0.05:normal:where the fuck did my girlfriend go?
+:0:talk:0.05:normal:idk
+:1:talk:0.05:angry:what do you mean you don't know? Do you know how long we've been together it's been like 5 years jesus christ this is going to completley ruin my life dude I am going to stay awake at night thinking about what happened to my girlfriend that one day at that stupid fucking circles house I am literally having a panic attack right now I am shaking right now this is too much for me dude holy shit I might drown in my own sweat from how scared I am holy shit holy shit holy shit holy shit holy shit holy shit
+:0:smug:0.005:normal:lol
+:1:talk:0.05:normal:alright i have now recovered lets rap
+:0:talk:0.05:normal:aight

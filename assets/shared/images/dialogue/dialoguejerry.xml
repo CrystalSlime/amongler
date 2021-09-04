@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="dialoguejerry.png">
+	<!-- Created with Adobe Animate version 21.0.1.37179 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="another0000" x="0" y="0" width="1295" height="935"/>
+	<SubTexture name="another0001" x="0" y="0" width="1295" height="935"/>
+	<SubTexture name="another0002" x="0" y="0" width="1295" height="935"/>
+	<SubTexture name="body0000" x="1295" y="0" width="1295" height="935"/>
+	<SubTexture name="body0001" x="1295" y="0" width="1295" height="935"/>
+	<SubTexture name="body0002" x="1295" y="0" width="1295" height="935"/>
+	<SubTexture name="body0003" x="2590" y="0" width="1295" height="707" frameX="0" frameY="-228" frameWidth="1295" frameHeight="935"/>
+	<SubTexture name="body0004" x="2590" y="0" width="1295" height="707" frameX="0" frameY="-228" frameWidth="1295" frameHeight="935"/>
+	<SubTexture name="body0005" x="2590" y="0" width="1295" height="707" frameX="0" frameY="-228" frameWidth="1295" frameHeight="935"/>
+	<SubTexture name="bodyidle0000" x="1295" y="0" width="1295" height="935"/>
+	<SubTexture name="bodyidle0001" x="1295" y="0" width="1295" height="935"/>
+	<SubTexture name="bodyidle0002" x="1295" y="0" width="1295" height="935"/>
+</TextureAtlas>
