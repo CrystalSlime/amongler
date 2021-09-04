@@ -953,6 +953,9 @@ class PlayState extends MusicBeatState
 					{
 						videoIntro('cutsceneone');
 					}
+					new FlxTimer().start(27, function(tmr:FlxTimer) {
+						dialogueIntro(dialogue);
+					});
 
 				default:
 					startCountdown();

@@ -1,0 +1,2 @@
+jerry:left bf:right
+:1:talk:0.05:normal:test lmao
