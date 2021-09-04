@@ -953,16 +953,14 @@ class PlayState extends MusicBeatState
 					{
 						videoIntro('cutsceneone');
 					}
-					new FlxTimer().start(27, function(tmr:FlxTimer) {
-						dialogueIntro(dialogue);
-					});
 
 				default:
 					startCountdown();
 			}
 			seenCutscene = true;
 		} else {
-			startCountdown();
+			
+				startCountdown();
 		}
 		RecalculateRating();
 
@@ -1052,7 +1050,10 @@ class PlayState extends MusicBeatState
 
 			(new FlxVideo(fileName)).finishCallback = function() {
 				remove(bg);
-				startCountdown();
+				if (SONG.song.toLowerCase() == 'the-circle')
+					dialogueIntro(dialogue);
+				else
+					startCountdown();
 			}
 			return;
 		} else {
