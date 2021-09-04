@@ -59,8 +59,10 @@ class DialogueBoxPsych extends FlxSpriteGroup
 				char.animation.addByPrefix('talkIdle', 'bodyidle', 24, true); 
 				char.animation.addByPrefix('smug', 'another', 24, true);
 				char.y -= -50;
+				
 				char.width -= 700;
 				char.height -= 700;
+				//sizing lmao ^^^
 		}
 		char.animation.play('talkIdle', true);
 	}
