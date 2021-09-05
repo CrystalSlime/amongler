@@ -282,10 +282,17 @@ class PlayState extends MusicBeatState
 
 		switch (SONG.song.toLowerCase())
 		{
-			case 'the-circle' | 'the-oval':
+			case 'the-circle':
 				defaultCamZoom = 0.55;
 				curStage = 'jerrysHouse';
 				var bg:BGSprite = new BGSprite('jerry/jerryStage', -1500, -1075, 0.9, 0.9);
+				bg.setGraphicSize(Std.int(bg.width * 1));
+				bg.updateHitbox();
+				add(bg);
+			case 'the-oval':
+				defaultCamZoom = 0.55;
+				curStage = 'jerrySunset';
+				var bg:BGSprite = new BGSprite('jerry/sunset', -2250, -1700, 0.9, 0.9);
 				bg.setGraphicSize(Std.int(bg.width * 1));
 				bg.updateHitbox();
 				add(bg);
@@ -646,6 +653,9 @@ class PlayState extends MusicBeatState
 			case 'jerrysHouse':
 				BF_X += 130;
 				BF_Y -= 20;
+			case 'jerrySunset':
+				BF_X += 130;
+				BF_Y -= 20;
 			case 'jerryNight':
 				BF_X += 130;
 				BF_Y -= 20;
@@ -687,6 +697,8 @@ class PlayState extends MusicBeatState
 		switch(curStage)
 		{
 			case 'jerrysHouse':
+				gf.y -= 500000000;
+			case 'jerrySunset':
 				gf.y -= 500000000;
 			case 'jerryNight':
 				gf.y -= 500000000;
