@@ -305,7 +305,7 @@ class TitleState extends MusicBeatState
 
 			new FlxTimer().start(1, function(tmr:FlxTimer)
 			{
-				MusicBeatState.switchState(new MainMenuState());
+				MusicBeatState.switchState(new StairsLOL());
 				closedState = true;
 			});
 			// FlxG.sound.play(Paths.music('titleShoot'), 0.7);
