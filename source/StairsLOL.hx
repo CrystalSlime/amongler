@@ -10,7 +10,7 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import lime.app.Application;
 
-class StairsLOL extends TitleState
+class StairsLOL extends MusicBeatState
 {
 
 	override function create()
@@ -40,12 +40,12 @@ class StairsLOL extends TitleState
 	{
 		if (controls.ACCEPT)
 		{
-			FlxG.switchState(new MainMenuState());
+			MusicBeatState.switchState(new MainMenuState());
 		}
 
 		if (controls.BACK)
 		{
-			FlxG.switchState(new MainMenuState());
+			MusicBeatState.switchState(new MainMenuState());
 		}
 		
 		super.update(elapsed);
