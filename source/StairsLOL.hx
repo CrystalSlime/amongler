@@ -28,7 +28,7 @@ class StairsLOL extends MusicBeatState
 		
 		
 		
-		txt.setFormat("VCR OSD Mono", 32, FlxColor.fromRGB(200, 200, 200), CENTER);
+		txt.setFormat("VCR OSD Mono", 32, FlxColor.fromString('0xffFFFFFF'), CENTER);
 		txt.borderColor = FlxColor.BLACK;
 		txt.borderSize = 3;
 		txt.borderStyle = FlxTextBorderStyle.OUTLINE;
