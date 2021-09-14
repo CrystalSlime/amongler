@@ -965,6 +965,10 @@ class PlayState extends MusicBeatState
 					{
 						videoIntro('cutsceneone');
 					}
+				case 'the-being':
+					{
+						videoIntro('cutscenethree');
+					}
 
 				default:
 					startCountdown();
