@@ -24,6 +24,12 @@ class CreditsState extends MusicBeatState
 	private var iconArray:Array<AttachedSprite> = [];
 
 	private static var creditsStuff:Array<Dynamic> = [ //Name - Icon name - Description - Link - BG Color
+		['jerry bois'],
+		['CrystalSlime',		'me',				'did practically everything',						'https://www.youtube.com/channel/UCT_wYKD4twxoYOZt2ggXHlw',		0xFFFF66E3],
+		['Madbear422',			'madbear',			'animated third cutscene',							'https://www.youtube.com/channel/UCuUWs5LR42EaSwtI_IqxO-w',		0xFFFF66E3],
+		['Ash',					'ash',				'helped me work things out while coding',			'https://twitter.com/ash__i_guess_',	0xFFFFFFFF],
+		['NonsenseHumor',		'nonsense',			'animated part of the second cutscene',				'https://www.youtube.com/c/NonsenseHumorLOL',	0xFF00A6FF],
+		['Star-Strawberry',		'star',				'gave me a single hex code',						'https://www.youtube.com/watch?v=dQw4w9WgXcQ',	0xFFFF9700],
 		['Psych Engine Team'],
 		['Shadow Mario',		'shadowmario',		'Main Programmer of Psych Engine',					'https://twitter.com/Shadow_Mario_',	0xFFFFDD33],
 		['RiverOaken',			'riveroaken',		'Main Artist/Animator of Psych Engine',				'https://twitter.com/river_oaken',		0xFFC30085],
