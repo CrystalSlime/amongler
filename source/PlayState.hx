@@ -965,6 +965,10 @@ class PlayState extends MusicBeatState
 					{
 						videoIntro('cutsceneone');
 					}
+				case 'the-oval':
+					{
+						videoIntro('cutscenetwo');
+					}
 				case 'the-being':
 					{
 						videoIntro('cutscenethree');
