@@ -282,7 +282,7 @@ class PlayState extends MusicBeatState
 
 		switch (SONG.song.toLowerCase())
 		{
-			case 'the-circle':
+			case 'the-circle' | 'the-sphere':
 				defaultCamZoom = 0.55;
 				curStage = 'jerrysHouse';
 				var bg:BGSprite = new BGSprite('jerry/jerryStage', -1500, -1075, 0.9, 0.9);
