@@ -17,6 +17,8 @@ class StairsLOL extends MusicBeatState
 	{
 		super.create();
 		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('jerry/jerrybg','shared'));
+		bg.setGraphicSize(Std.int(bg.width * 1.1));
+		bg.y += 20;
 		add(bg);
 		
 		var txt:FlxText;
