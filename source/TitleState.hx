@@ -123,7 +123,9 @@ class TitleState extends MusicBeatState
 		#end
 	}
 
+	var titlebg:FlxSprite;
 	var logoBl:FlxSprite;
+	var jerry:FlxSprite;
 	var gfDance:FlxSprite;
 	var danceLeft:Bool = false;
 	var titleText:FlxSprite;
@@ -170,10 +172,22 @@ class TitleState extends MusicBeatState
 		// bg.updateHitbox();
 		add(bg);
 
+		titlebg = new FlxSprite().loadGraphic(Paths.image('titlebg'));
+		titlebg.screenCenter();
+		titlebg.antialiasing = ClientPrefs.globalAntialiasing;
+		add(titlebg);
+
+		jerry = new FlxSprite(600, -75);
+		jerry.frames = Paths.getSparrowAtlas('jspin');
+		jerry.antialiasing = ClientPrefs.globalAntialiasing;
+		jerry.animation.addByPrefix('spin', 'jerryspin', 24, true);
+		jerry.animation.play('spin');
+		add(jerry);
+	
 		logoBl = new FlxSprite(-150, -100);
-		logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
+		logoBl.frames = Paths.getSparrowAtlas('jerry_logo');
 		logoBl.antialiasing = ClientPrefs.globalAntialiasing;
-		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24);
+		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24, false);
 		logoBl.animation.play('bump');
 		logoBl.updateHitbox();
 		// logoBl.screenCenter();
@@ -185,10 +199,11 @@ class TitleState extends MusicBeatState
 		gfDance.animation.addByIndices('danceLeft', 'gfDance', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
 		gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 		gfDance.antialiasing = ClientPrefs.globalAntialiasing;
-		add(gfDance);
+		//add(gfDance);
 		gfDance.shader = swagShader.shader;
 		add(logoBl);
 		//logoBl.shader = swagShader.shader;
+
 
 		titleText = new FlxSprite(100, FlxG.height * 0.8);
 		titleText.frames = Paths.getSparrowAtlas('titleEnter');
@@ -363,7 +378,7 @@ class TitleState extends MusicBeatState
 		super.beatHit();
 
 		if(logoBl != null) 
-			logoBl.animation.play('bump');
+			logoBl.animation.play('bump', true);
 
 		if(gfDance != null) {
 			danceLeft = !danceLeft;

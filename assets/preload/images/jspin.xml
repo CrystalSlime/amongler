@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="jerrylogo.png">
+	<!-- Created with Adobe Animate version 21.0.8.42666 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="jerryspin0000" x="0" y="0" width="611" height="566" frameX="-102" frameY="-97" frameWidth="713" frameHeight="713"/>
+	<SubTexture name="jerryspin0001" x="613" y="0" width="543" height="619" frameX="-45" frameY="-94" frameWidth="713" frameHeight="713"/>
+	<SubTexture name="jerryspin0002" x="1158" y="0" width="644" height="587" frameX="-7" frameY="-73" frameWidth="713" frameHeight="713"/>
+	<SubTexture name="jerryspin0003" x="0" y="621" width="585" height="643" frameX="0" frameY="0" frameWidth="713" frameHeight="713"/>
+</TextureAtlas>
