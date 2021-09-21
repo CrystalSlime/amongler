@@ -33,7 +33,7 @@ class StoryMenuState extends MusicBeatState
 	//It works like this:
 	// ['Left character', 'Center character', 'Right character']
 	var weekCharacters:Array<Dynamic> = [
-		['dad', 'bf', 'gf'],
+		['gf', 'gf', 'gf'],
 		['jerry', 'bf', 'gf']
 	];
 
