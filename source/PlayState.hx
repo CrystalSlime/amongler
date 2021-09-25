@@ -2798,44 +2798,22 @@ class PlayState extends MusicBeatState
 			storyPlaylist.remove(storyPlaylist[0]);
 			if (storyPlaylist.length <= 0)
                 {
-                    FlxG.sound.playMusic(Paths.music('freakyMenu'));
+                  
+					transIn = FlxTransitionableState.defaultTransIn;
+					transOut = FlxTransitionableState.defaultTransOut;
 
-                    transIn = FlxTransitionableState.defaultTransIn;
-                    transOut = FlxTransitionableState.defaultTransOut;
-                    switch(SONG.song.toLowerCase())
-                    {
-						case 'the-being':
-							{
-								videoIntro('ending');
-							}
-                    default:
-                        LoadingState.loadAndSwitchState(new MainMenuState());
-                    }
-				FlxG.save.data.weekUnlocked = StoryMenuState.weekUnlocked;
-				FlxG.save.flush();
-                }
-			if (storyPlaylist.length <= 0)
-			{
-				FlxG.sound.playMusic(Paths.music('freakyMenu'));
+					paused = true;
 
-				transIn = FlxTransitionableState.defaultTransIn;
-				transOut = FlxTransitionableState.defaultTransOut;
+					FlxG.sound.music.stop();
+					vocals.stop();
 
-				MusicBeatState.switchState(new StoryMenuState());
+					if (curSong.toLowerCase() == 'the-being')
+					{
+						var video:MP4Handler = new MP4Handler();
+						video.playMP4(Paths.video('ending'), new MainMenuState()); 
+						//FlxG.switchState(new MainMenuState());
+					}
 
-				// if ()
-				StoryMenuState.weekUnlocked[Std.int(Math.min(storyWeek + 1, StoryMenuState.weekUnlocked.length - 1))] = true;
-
-				if (SONG.validScore)
-				{
-					Highscore.saveWeekScore(WeekData.getCurrentWeekNumber(), campaignScore, storyDifficulty);
-				}
-
-				FlxG.save.data.weekUnlocked = StoryMenuState.weekUnlocked;
-				FlxG.save.flush();
-				usedPractice = false;
-				changedDifficulty = false;
-				cpuControlled = false;
 			}
 			else
 			{
