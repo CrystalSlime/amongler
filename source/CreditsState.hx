@@ -25,7 +25,7 @@ class CreditsState extends MusicBeatState
 
 	private static var creditsStuff:Array<Dynamic> = [ //Name - Icon name - Description - Link - BG Color
 		['me (subscribe to my yt pls)'],
-		['CrystalSlime',		'me',				'did practically everything',						'https://www.youtube.com/channel/UCT_wYKD4twxoYOZt2ggXHlw',		0xFFFF66E3],
+		['CrystalSlime',		'me',				'did practically everything',						'https://www.youtube.com/channel/UCT_wYKD4twxoYOZt2ggXHlw',		0xFFFF0059],
 		[''],
 		['Special Thanks'],
 		['joeys pencil',		'joey',				'drew',												'https://www.youtube.com/channel/UCRLsZwUPm7Ax4ZZ3lgM77Ng/',		0xFFA820EC],
@@ -33,6 +33,7 @@ class CreditsState extends MusicBeatState
 		['tosslers guitar',		'tossler',			'played an epic fucking solo',						'https://twitter.com/IdoBPerez',					0xFFFF0000],
 		['Ash',					'ash',				'helped me work things out while coding',			'https://twitter.com/ash__i_guess_',	0xFFFFFFFF],
 		['Brightfyre',			'brightfyre',		'also helped me work things out while coding',		'https://www.youtube.com/c/BrightFyre/',	0xFFFFBD00],
+		['Vidz',				'vidz',				'also also helped me work things out while coding',		'https://twitter.com/ItsVidz3',	0xFF4BC9FF],
 		['Madbear422',			'madbear',			'made the logo, animated the last cuscene and did some other small things',							'https://www.youtube.com/channel/UCuUWs5LR42EaSwtI_IqxO-w',		0xFFFF66E3],
 		['HugeNate',			'large nate of humongous proportions',			'helped me with charting in some parts',				'https://twitter.com/HugeNate_',	0xFF20ECAB],
 		['NonsenseHumor',		'nonsense',			'animated part of the third cutscene',				'https://www.youtube.com/c/NonsenseHumorLOL',	0xFF00A6FF],
