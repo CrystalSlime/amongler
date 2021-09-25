@@ -157,7 +157,6 @@ class PlayState extends MusicBeatState
 	var halloweenBG:BGSprite;
 	var halloweenWhite:BGSprite;
 
-	var video:MP4Handler = new MP4Handler();
 
 	var phillyCityLights:FlxTypedGroup<BGSprite>;
 	var phillyTrain:BGSprite;
