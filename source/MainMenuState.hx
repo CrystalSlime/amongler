@@ -26,7 +26,10 @@ class MainMenuState extends MusicBeatState
 	public static var psychEngineVersion:String = '0.3.2'; //This is also used for Discord RPC
 	public static var curSelected:Int = 0;
 
-	var menuItems:FlxTypedGroup<FlxSprite>;
+	var menuItems:FlxTypedGroup<TheMenuItem>;
+	var menuItemsBG:FlxTypedGroup<FlxSprite>;
+	var ash:FlxSprite;
+	var logo:FlxSprite;
 	private var camGame:FlxCamera;
 	private var camAchievement:FlxCamera;
 	
@@ -75,24 +78,58 @@ class MainMenuState extends MusicBeatState
 		add(magenta);
 		// magenta.scrollFactor.set();
 
-		menuItems = new FlxTypedGroup<FlxSprite>();
+		menuItemsBG = new FlxTypedGroup<FlxSprite>();
+		add(menuItemsBG);
+
+		menuItems = new FlxTypedGroup<TheMenuItem>();
 		add(menuItems);
 
-			var offset:Float = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
-			var menuItem:FlxSprite = new FlxSprite(0, (i * 140)  + offset);
-			menuItem.frames = Paths.getSparrowAtlas('mainmenu/menu_' + optionShit[i]);
-			menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
-			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
-			menuItem.animation.play('idle');
+		ash = new FlxSprite(73, 355).loadGraphic(Paths.image('jerrymenu/ash'));
+		add(ash);
+
+		logo = new FlxSprite(807, -6).loadGraphic(Paths.image('jerrymenu/logo'));
+		add(logo);
+		logo.antialiasing = true;
+
+		FlxTween.angle(logo, 0, 10, 2, {ease:FlxEase.quadOut,
+		onComplete: function(twn:FlxTween) {
+			logoAngle();
+		},});
+
+		for (i in 0...optionShit.length) {
+			var menuItemBG:FlxSprite = new FlxSprite();
+			var menuItem:TheMenuItem = new TheMenuItem();
+			switch (optionShit[i]) {
+				case 'story_mode':
+					menuItemBG.loadGraphic(Paths.image('jerrymenu/storybg'));
+					menuItemBG.setPosition(0, 54);
+					menuItem.loadGraphic(Paths.image('jerrymenu/story'));
+					menuItem.setPosition(36, 46);
+				case 'freeplay':
+					menuItemBG.loadGraphic(Paths.image('jerrymenu/freeplaybg'));
+					menuItemBG.setPosition(0, 187);
+					menuItem.loadGraphic(Paths.image('jerrymenu/freeplay'));
+					menuItem.setPosition(77, 188);
+				case 'youtube':
+					menuItemBG.loadGraphic(Paths.image('jerrymenu/youtubebg'));
+					menuItemBG.setPosition(678, 378);
+					menuItem.loadGraphic(Paths.image('jerrymenu/yt'));
+					menuItem.setPosition(728, 388);
+				case 'credits':
+					menuItemBG.loadGraphic(Paths.image('jerrymenu/creditsbg'));
+					menuItemBG.setPosition(752, 545);
+					menuItem.loadGraphic(Paths.image('jerrymenu/credits'));
+					menuItem.setPosition(851, 549);
+				case 'options':
+					menuItemBG.loadGraphic(Paths.image('jerrymenu/optionbg'));
+					menuItemBG.setPosition(632, -4);
+					menuItem.loadGraphic(Paths.image('jerrymenu/options'));
+					menuItem.setPosition(634, 11);
+			}
 			menuItem.ID = i;
-			menuItem.screenCenter(X);
 			menuItems.add(menuItem);
-			var scr:Float = (optionShit.length - 4) * 0.135;
-			if(optionShit.length < 6) scr = 0;
-			menuItem.scrollFactor.set(0, scr);
-			menuItem.antialiasing = ClientPrefs.globalAntialiasing;
-			//menuItem.setGraphicSize(Std.int(menuItem.width * 0.58));
-			menuItem.updateHitbox();
+			menuItemsBG.add(menuItemBG);
+		}
 
 		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Engine v" + psychEngineVersion, 12);
 		versionShit.scrollFactor.set();
@@ -173,7 +210,7 @@ class MainMenuState extends MusicBeatState
 
 					if(ClientPrefs.flashing) FlxFlicker.flicker(magenta, 1.1, 0.15, false);
 
-					menuItems.forEach(function(spr:FlxSprite)
+					menuItems.forEach(function(spr:TheMenuItem)
 					{
 						if (curSelected != spr.ID)
 						{
@@ -213,12 +250,17 @@ class MainMenuState extends MusicBeatState
 
 		super.update(elapsed);
 
-		menuItems.forEach(function(spr:FlxSprite)
-		{
-			spr.screenCenter(X);
-		});
 	}
-
+	function logoAngle()
+	{
+		FlxTween.angle(logo, 10, -10, 4, {ease:FlxEase.quadInOut,
+		onComplete: function(twn:FlxTween) {
+			FlxTween.angle(logo, -10, 10, 4, {ease:FlxEase.quadInOut,
+			onComplete: function(twn:FlxTween) {
+				logoAngle();
+			},});
+		},});
+	}
 	function changeItem(huh:Int = 0)
 	{
 		curSelected += huh;
@@ -228,19 +270,30 @@ class MainMenuState extends MusicBeatState
 		if (curSelected < 0)
 			curSelected = menuItems.length - 1;
 
-		menuItems.forEach(function(spr:FlxSprite)
+		menuItems.forEach(function(spr:TheMenuItem)
 		{
-			spr.animation.play('idle');
-			spr.offset.y = 0;
-			spr.updateHitbox();
+			if (spr.theTween.active)
+				spr.theTween.cancel();
+			spr.theTween = FlxTween.tween(spr.scale, {x: 0.8, y: 0.8}, 0.07, {ease: FlxEase.quadOut});
+			spr.color = FlxColor.fromHSL(spr.color.hue, spr.color.saturation, 0.7, 1);
 
 			if (spr.ID == curSelected)
 			{
-				spr.animation.play('selected');
-				spr.offset.x = 0.15 * (spr.frameWidth / 2 + 180);
-				spr.offset.y = 0.15 * spr.frameHeight;
-				FlxG.log.add(spr.frameWidth);
+				if (spr.theTween.active)
+					spr.theTween.cancel();
+				spr.theTween = FlxTween.tween(spr.scale, {x: 1, y: 1}, 0.07, {ease: FlxEase.quadOut});
+				spr.color = FlxColor.fromHSL(spr.color.hue, spr.color.saturation, 1, 1);
 			}
 		});
+	}
+}
+
+class TheMenuItem extends FlxSprite
+{
+	public var theTween:FlxTween;
+	public function new(?x:Int = 0, ?y:Int = 0)
+	{
+		super();
+		theTween = FlxTween.tween(scale, {x: 1, y: 1}, 0.01, {});
 	}
 }
