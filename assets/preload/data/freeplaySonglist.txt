@@ -1,4 +1,3 @@
-Tutorial:gf:0xFF9271FD
 The-Circle:jerry:0xFFFF00FF
 The-Sphere:jerry:0xFFFF00FF
 The-Oval:jerry:0xFFFF00FF
