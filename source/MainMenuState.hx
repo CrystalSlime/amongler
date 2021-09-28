@@ -30,9 +30,22 @@ class MainMenuState extends MusicBeatState
 	var menuItemsBG:FlxTypedGroup<FlxSprite>;
 	var ash:FlxSprite;
 	var logo:FlxSprite;
+	var ashMode:Bool = false;
 	private var camGame:FlxCamera;
 	private var camAchievement:FlxCamera;
+	var canDoStuff:Bool = false;
 	
+	var rightAnswer:Array<String> = [
+		'up',
+		'up',
+		'down',
+		'down',
+		'left',
+		'right',
+		'left',
+		'right',
+	];
+	var realAnswer:Array<String> = [];
 	var optionShit:Array<String> = ['story_mode', 'freeplay', 'youtube', 'credits', 'options'];
 
 	var magenta:FlxSprite;
@@ -43,6 +56,9 @@ class MainMenuState extends MusicBeatState
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
 		#end
+
+		if (!FlxG.sound.music.playing)
+			FlxG.sound.playMusic(Paths.music('freakyMenu'));
 
 		camGame = new FlxCamera();
 		camAchievement = new FlxCamera();
@@ -105,28 +121,82 @@ class MainMenuState extends MusicBeatState
 					menuItemBG.setPosition(0, 54);
 					menuItem.loadGraphic(Paths.image('jerrymenu/story'));
 					menuItem.setPosition(36, 46);
+					menuItem.x -= 600;
+					menuItemBG.x -= 600;
+					FlxTween.tween(menuItem, {x: 36}, 0.7, {
+						ease: FlxEase.quadOut,
+						startDelay: 0.5
+					});
+					FlxTween.tween(menuItemBG, {x: 0}, 0.7, {
+						ease: FlxEase.quadOut,
+						startDelay: 0.4
+					});
 				case 'freeplay':
 					menuItemBG.loadGraphic(Paths.image('jerrymenu/freeplaybg'));
 					menuItemBG.setPosition(0, 187);
 					menuItem.loadGraphic(Paths.image('jerrymenu/freeplay'));
 					menuItem.setPosition(77, 188);
+					menuItem.x -= 600;
+					menuItemBG.x -= 600;
+					FlxTween.tween(menuItem, {x: 77}, 0.7, {
+						ease: FlxEase.quadOut,
+						startDelay: 0.5
+					});
+					FlxTween.tween(menuItemBG, {x: 0}, 0.7, {
+						ease: FlxEase.quadOut,
+						startDelay: 0.4
+					});
 				case 'youtube':
 					menuItemBG.loadGraphic(Paths.image('jerrymenu/youtubebg'));
 					menuItemBG.setPosition(678, 378);
 					menuItem.loadGraphic(Paths.image('jerrymenu/yt'));
 					menuItem.setPosition(728, 388);
+					menuItem.x += 600;
+					menuItemBG.x += 600;
+					FlxTween.tween(menuItem, {x: 728}, 0.7, {
+						ease: FlxEase.quadOut,
+						startDelay: 0.5
+					});
+					FlxTween.tween(menuItemBG, {x: 678}, 0.7, {
+						ease: FlxEase.quadOut,
+						startDelay: 0.4
+					});
 				case 'credits':
 					menuItemBG.loadGraphic(Paths.image('jerrymenu/creditsbg'));
 					menuItemBG.setPosition(752, 545);
 					menuItem.loadGraphic(Paths.image('jerrymenu/credits'));
 					menuItem.setPosition(851, 549);
+					menuItem.x += 600;
+					menuItemBG.x += 600;
+					FlxTween.tween(menuItem, {x: 851}, 0.7, {
+						ease: FlxEase.quadOut,
+						startDelay: 0.5
+					});
+					FlxTween.tween(menuItemBG, {x: 752}, 0.7, {
+						ease: FlxEase.quadOut,
+						startDelay: 0.4
+					});
 				case 'options':
 					menuItemBG.loadGraphic(Paths.image('jerrymenu/optionbg'));
 					menuItemBG.setPosition(632, -4);
 					menuItem.loadGraphic(Paths.image('jerrymenu/options'));
 					menuItem.setPosition(634, 11);
+					menuItem.y -= 170;
+					menuItemBG.y -= 170;
+					FlxTween.tween(menuItem, {y: 11}, 0.7, {
+						ease: FlxEase.quadOut,
+						startDelay: 0.5,
+						onComplete: function (twn:FlxTween) {
+							selectedSomethin = false;
+						}
+					});
+					FlxTween.tween(menuItemBG, {y: -14}, 0.7, {
+						ease: FlxEase.quadOut,
+						startDelay: 0.4
+					});
 			}
 			menuItem.ID = i;
+			
 			menuItems.add(menuItem);
 			menuItemsBG.add(menuItemBG);
 		}
@@ -167,7 +237,7 @@ class MainMenuState extends MusicBeatState
 	}
 	#end
 
-	var selectedSomethin:Bool = false;
+	var selectedSomethin:Bool = true;
 
 	override function update(elapsed:Float)
 	{
@@ -191,6 +261,14 @@ class MainMenuState extends MusicBeatState
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 				changeItem(1);
 			}
+			if (FlxG.keys.justPressed.LEFT)
+				addAnswer('left');
+			if (FlxG.keys.justPressed.UP)
+				addAnswer('up');
+			if (FlxG.keys.justPressed.DOWN)
+				addAnswer('down');
+			if (FlxG.keys.justPressed.RIGHT)
+				addAnswer('right');
 
 			if (controls.BACK)
 			{
@@ -199,7 +277,7 @@ class MainMenuState extends MusicBeatState
 
 			if (controls.ACCEPT)
 			{
-				if (optionShit[curSelected] == 'youtube')
+				if (optionShit[curSelected] == 'youtube' && !ashMode)
 				{
 					CoolUtil.browserLoad('https://www.youtube.com/channel/UCT_wYKD4twxoYOZt2ggXHlw');
 				}
@@ -208,9 +286,83 @@ class MainMenuState extends MusicBeatState
 					selectedSomethin = true;
 					FlxG.sound.play(Paths.sound('confirmMenu'));
 
-					if(ClientPrefs.flashing) FlxFlicker.flicker(magenta, 1.1, 0.15, false);
+					//if(ClientPrefs.flashing) FlxFlicker.flicker(magenta, 1.1, 0.15, false);
+					for (i in menuItems) {
+						var menuItem = i;
+						var menuItemBG = menuItemsBG.members[menuItems.members.indexOf(i)];
+						switch (optionShit[menuItems.members.indexOf(i)]) {
+							case 'story_mode':
 
-					menuItems.forEach(function(spr:TheMenuItem)
+								FlxTween.tween(menuItem, {x: 36 - 700}, 0.7, {
+									ease: FlxEase.quadOut,
+									startDelay: 0.1
+								});
+								FlxTween.tween(menuItemBG, {x: 0 - 700}, 0.7, {
+									ease: FlxEase.quadOut,
+									startDelay: 0
+								});
+							case 'freeplay':
+								FlxTween.tween(menuItem, {x: 77 - 700}, 0.7, {
+									ease: FlxEase.quadOut,
+									startDelay: 0.1
+								});
+								FlxTween.tween(menuItemBG, {x: 0 - 700}, 0.7, {
+									ease: FlxEase.quadOut,
+									startDelay: 0
+								});
+							case 'youtube':
+								FlxTween.tween(menuItem, {x: 728 + 600}, 0.7, {
+									ease: FlxEase.quadOut,
+									startDelay: 0.1
+								});
+								FlxTween.tween(menuItemBG, {x: 678 + 600}, 0.7, {
+									ease: FlxEase.quadOut,
+									startDelay: 0
+								});
+							case 'credits':
+								FlxTween.tween(menuItem, {x: 851 + 600}, 0.7, {
+									ease: FlxEase.quadOut,
+									startDelay: 0.1
+								});
+								FlxTween.tween(menuItemBG, {x: 752 + 600}, 0.7, {
+									ease: FlxEase.quadOut,
+									startDelay: 0
+								});
+							case 'options':
+								FlxTween.tween(menuItem, {y: 11 - 170}, 0.7, {
+									ease: FlxEase.quadOut,
+									startDelay: 0.1,
+									onComplete: function (twn:FlxTween) {
+										if (ashMode) {
+											MusicBeatState.switchState(new AshMenu());
+										} else {
+											switch (optionShit[curSelected])
+											{
+												case 'story_mode':
+													MusicBeatState.switchState(new StoryMenuState());
+												case 'freeplay':
+													MusicBeatState.switchState(new FreeplayState());
+												case 'awards':
+													MusicBeatState.switchState(new AchievementsMenuState());
+												case 'credits':
+													MusicBeatState.switchState(new CreditsState());
+												case 'options':
+													MusicBeatState.switchState(new OptionsState());
+											}
+										}
+									}
+								});
+								FlxTween.tween(menuItemBG, {y: -14 - 170}, 0.7, {
+									ease: FlxEase.quadOut,
+									startDelay: 0
+								});
+						}
+					}
+
+					var daChoice:String = optionShit[curSelected];
+
+					
+					/*menuItems.forEach(function(spr:TheMenuItem)
 					{
 						if (curSelected != spr.ID)
 						{
@@ -224,26 +376,12 @@ class MainMenuState extends MusicBeatState
 						}
 						else
 						{
-							FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
-							{
-								var daChoice:String = optionShit[curSelected];
-
-								switch (daChoice)
-								{
-									case 'story_mode':
-										MusicBeatState.switchState(new StoryMenuState());
-									case 'freeplay':
-										MusicBeatState.switchState(new FreeplayState());
-									case 'awards':
-										MusicBeatState.switchState(new AchievementsMenuState());
-									case 'credits':
-										MusicBeatState.switchState(new CreditsState());
-									case 'options':
-										MusicBeatState.switchState(new OptionsState());
-								}
-							});
-						}
-					});
+							/*FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
+							{*/
+								
+							//});
+						
+					//});
 				}
 			}
 		}
@@ -270,6 +408,10 @@ class MainMenuState extends MusicBeatState
 		if (curSelected < 0)
 			curSelected = menuItems.length - 1;
 
+		if (ash.scale.x > 1) {
+			FlxTween.tween(ash.scale, {x: 1, y: 1}, 0.07, {ease: FlxEase.quadOut});
+			ashMode = false;
+		}
 		menuItems.forEach(function(spr:TheMenuItem)
 		{
 			if (spr.theTween.active)
@@ -285,6 +427,33 @@ class MainMenuState extends MusicBeatState
 				spr.color = FlxColor.fromHSL(spr.color.hue, spr.color.saturation, 1, 1);
 			}
 		});
+	}
+	function addAnswer(thing:String) {
+		realAnswer.push(thing);
+		if (rightAnswer[realAnswer.length - 1] != thing) {
+			if (thing == 'up') {
+				realAnswer.splice(realAnswer.length - 1, realAnswer.length - 1);
+			} else {
+				realAnswer.splice(0, realAnswer.length);
+			}
+			/*if (rightAnswer[0] == thing) {
+				addAnswer(thing);
+			}*/
+		} else {
+			if (realAnswer.length == rightAnswer.length) {
+				for (spr in menuItems) {
+					if (spr.theTween.active)
+						spr.theTween.cancel();
+					spr.theTween = FlxTween.tween(spr.scale, {x: 0.8, y: 0.8}, 0.07, {ease: FlxEase.quadOut});
+					spr.color = FlxColor.fromHSL(spr.color.hue, spr.color.saturation, 0.7, 1);
+				}
+	
+				ashMode = true;
+				FlxTween.tween(ash.scale, {x: 1.2, y: 1.2}, 0.07, {ease: FlxEase.quadOut});
+			}
+		}
+		trace(realAnswer);
+		trace(rightAnswer[realAnswer.length - 1]);
 	}
 }
 
